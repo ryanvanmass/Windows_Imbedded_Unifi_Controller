@@ -1,5 +1,6 @@
 ﻿#Create Username Variable
-$USERNAME = whoami
+$USERNAME =( ( Get-WMIObject -class Win32_ComputerSystem | Select-Object -ExpandProperty username ) -split '\\' )[1]
+
 
 # Install Java
 Invoke-WebRequest https://javadl.oracle.com/webapps/download/AutoDL?BundleId=245807_df5ad55fdd604472a86a45a217032c7d -OutFile C:\Users\$USERNAME\Downloads\Java.exe
