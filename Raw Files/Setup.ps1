@@ -15,8 +15,8 @@ C:\Users\Ryan\Downloads\UniFi-installer.exe
 Pause
 
 #Add Unifi Service
-Write-Output "Installing Controller as a Service"
-java -jar 'C:\Users\Ryan\Ubiquiti UniFilib\ace.jar' installsvc
+# Write-Output "Installing Controller as a Service"
+# Start-Process -FilePath cmd 'java -jar "C:\Users\Ryan\Ubiquiti UniFilib\ace.jar" installsvc'
 
 # Gets Current IP for Port Forward
 $IP = (Get-WmiObject -class win32_NetworkAdapterConfiguration -Filter 'ipenabled = "true"').ipaddress[0]
