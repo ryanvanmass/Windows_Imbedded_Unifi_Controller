@@ -2,7 +2,7 @@
 Write-Output "Downloading Java"
 Invoke-WebRequest https://javadl.oracle.com/webapps/download/AutoDL?BundleId=245807_df5ad55fdd604472a86a45a217032c7d -OutFile C:\Users\Ryan\Downloads\Java.exe 
 
-Write-Output "Please Install Java"
+Write-Output "Installing Java"
 C:\Users\Ryan\Downloads\Java.exe /s
 Start-Sleep 120
 
