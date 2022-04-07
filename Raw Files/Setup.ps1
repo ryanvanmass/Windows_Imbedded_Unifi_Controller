@@ -12,7 +12,7 @@ Invoke-WebRequest https://dl.ui.com/unifi/7.0.25/UniFi-installer.exe -OutFile C:
 
 Write-Output "Please Install Unifi Controller"
 C:\Users\Ryan\Downloads\UniFi-installer.exe
-Start-Sleep 120
+Pause
 
 #Add Unifi Service
 Write-Output "Installing Controller as a Service"
