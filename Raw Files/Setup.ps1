@@ -3,7 +3,7 @@ Write-Output "Downloading Java"
 Invoke-WebRequest https://javadl.oracle.com/webapps/download/AutoDL?BundleId=245807_df5ad55fdd604472a86a45a217032c7d -OutFile C:\Users\Ryan\Downloads\Java.exe 
 
 Write-Output "Please Install Java"
-C:\Users\Ryan\Downloads\Java.exe
+C:\Users\Ryan\Downloads\Java.exe /s
 Start-Sleep 120
 
 # Install Unifi Controller
@@ -25,3 +25,5 @@ $IP = (Get-WmiObject -class win32_NetworkAdapterConfiguration -Filter 'ipenabled
 #Forward Port 8443 to 443
 Write-Output "Forwarding Port 8443 to 443"
 netsh interface portproxy add v4tov4 listenaddress=$IP listenport=443 connectaddress=$IP connectport=8443
+
+Pause
