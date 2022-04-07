@@ -25,5 +25,8 @@ $IP = (Get-WmiObject -class win32_NetworkAdapterConfiguration -Filter 'ipenabled
 #Forward Port 8443 to 443
 Write-Output "Forwarding Port 8443 to 443"
 netsh interface portproxy add v4tov4 listenaddress=$IP listenport=443 connectaddress=$IP connectport=8443
+netsh interface portproxy add v4tov4 listenaddress=127.0.0.1 listenport=443 connectaddress=127.0.0.1 connectport=8443
+
+
 
 Pause
