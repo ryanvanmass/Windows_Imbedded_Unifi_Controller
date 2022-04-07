@@ -8,7 +8,7 @@ Write-Output "4. Prep for Upgrade"
 $UserSelection = Read-Host -Prompt "Selection: "
 
 ### Install Controller ###
-if ($UserSelection == 1) {
+if ($UserSelection -eq 1) {
     # Install Java
     Write-Output "Downloading Java"
     Invoke-WebRequest https://javadl.oracle.com/webapps/download/AutoDL?BundleId=245807_df5ad55fdd604472a86a45a217032c7d -OutFile C:\Users\Ryan\Downloads\Java.exe 
@@ -37,7 +37,9 @@ if ($UserSelection == 1) {
     Pause
     Exit
 }
-
+elseif ($UserSelection -eq 2) {
+    Write-Output "Not Implemented"
+}
 
 
 #Add Unifi Service
