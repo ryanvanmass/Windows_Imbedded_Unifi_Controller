@@ -34,6 +34,7 @@ if ($UserSelection -eq 1) {
     netsh interface portproxy add v4tov4 listenaddress=$IP listenport=443 connectaddress=$IP connectport=8443
     netsh interface portproxy add v4tov4 listenaddress=127.0.0.1 listenport=443 connectaddress=127.0.0.1 connectport=8443
 
+    Write-Output "Controller is Now Installed"
     Pause
     Exit
 }
