@@ -38,14 +38,17 @@ if ($UserSelection -eq 1) {
     Exit
 }
 elseif ($UserSelection -eq 2) {
-    Write-Output "Not Implemented"
+    Set-Location 'C:\Users\Ryan\Ubiquiti UniFi'
+    # Kill Unifi if it is running
+    Stop-Process -Name Java*
+    
+    # Add Unifi Service
+    Write-Output "Installing Controller as a Service"
+    java -jar 'C:\Users\Ryan\Ubiquiti UniFi\lib\ace.jar' installsvc
+ 
+    # Start Service
+    Start-Service Unifi
+
+    Pause
+    Exit
 }
-
-
-#Add Unifi Service
-#Write-Output "Installing Controller as a Service"
-#Start-Process -FilePath cmd 'java -jar "C:\Users\Ryan\Ubiquiti UniFilib\ace.jar" installsvc'
-
-
-
-#Pause
