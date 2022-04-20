@@ -53,3 +53,7 @@ elseif ($UserSelection -eq 2) {
     Pause
     Exit
 }
+elseif ($UserSelection -eq 2) {
+    Get-Content -Tail 30 "C:\Users\Ryan\Ubiquiti UniFi\logs\server.log" -Wait
+
+}
