@@ -3,7 +3,7 @@ Write-Output "Please Select one of the FOllowing"
 Write-Output "1. Install Controller"
 Write-Output "2. Enable Running the Controller as a service"
 Write-Output "3. Live Log monitor"
-Write-Output "4. Prep for Upgrade"
+# Write-Output "4. Prep for Upgrade"
 
 $UserSelection = Read-Host -Prompt "Selection: "
 
@@ -56,3 +56,4 @@ elseif ($UserSelection -eq 2) {
 elseif ($UserSelection -eq 3) {
     Get-Content -Tail 30 "C:\Users\Ryan\Ubiquiti UniFi\logs\server.log" -Wait
 }
+
