@@ -23,7 +23,7 @@ if ($UserSelection -eq 1) {
     Invoke-WebRequest https://javadl.oracle.com/webapps/download/AutoDL?BundleId=245807_df5ad55fdd604472a86a45a217032c7d -OutFile C:\Users\Controller\Downloads\Java.exe 
 
     Write-Output "Installing Java"
-    Start-Process C:\Users\Controller\Downloads\Java.exe /s -Credential $Credentials
+    C:\Users\Controller\Downloads\Java.exe /s
     Start-Sleep 120
 
     # Install Unifi Controller
