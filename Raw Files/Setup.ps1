@@ -18,6 +18,9 @@ if ($UserSelection -eq 1) {
 
     $Credentials = Get-Credential -UserName Controller -Message "Please Enter Controller Service Account Password"
 
+    Start whoami -Credential $Credentials
+
+
     # Install Java
     Write-Output "Downloading Java"
     Invoke-WebRequest https://javadl.oracle.com/webapps/download/AutoDL?BundleId=245807_df5ad55fdd604472a86a45a217032c7d -OutFile C:\Users\Controller\Downloads\Java.exe 
@@ -31,7 +34,7 @@ if ($UserSelection -eq 1) {
     Invoke-WebRequest https://dl.ui.com/unifi/7.0.25/UniFi-installer.exe -OutFile C:\Users\Controller\Downloads\UniFi-installer.exe
 
     Write-Output "Please Install Unifi Controller"
-    Start-Proccess C:\Users\Controller\Downloads\UniFi-installer.exe -Credential $Credentials
+    Start-Procces C:\Users\Controller\Downloads\UniFi-installer.exe -Credential $Credentials
     Pause
 
     # Get Current IP Address
