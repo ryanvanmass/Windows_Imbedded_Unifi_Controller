@@ -34,7 +34,7 @@ if ($UserSelection -eq 1) {
     Invoke-WebRequest https://dl.ui.com/unifi/7.0.25/UniFi-installer.exe -OutFile C:\Users\Controller\Downloads\UniFi-installer.exe
 
     Write-Output "Please Install Unifi Controller"
-    Start-Procces C:\Users\Controller\Downloads\UniFi-installer.exe -Credential $Credentials
+    Start-Process C:\Users\Controller\Downloads\UniFi-installer.exe -Credential $Credentials
     Pause
 
     # Get Current IP Address
