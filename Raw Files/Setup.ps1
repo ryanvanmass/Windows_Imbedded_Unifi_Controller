@@ -16,9 +16,7 @@ if ($UserSelection -eq 1) {
     New-localUser -Name Controller -Password $Password -PasswordNeverExpires
     Add-LocalGroupMember Users Controller
 
-    $Credentials = Get-Credential -UserName Controller -Message "Please Enter Controller Service Account Password"
-
-    Start whoami -Credential $Credentials
+    runas /savecred /user:Controller whoami
 
 
     # Install Java
@@ -33,8 +31,10 @@ if ($UserSelection -eq 1) {
     Write-Output "Downloading Unifi Controller"
     Invoke-WebRequest https://dl.ui.com/unifi/7.0.25/UniFi-installer.exe -OutFile C:\Users\Controller\Downloads\UniFi-installer.exe
 
+    Set-Location C:\Users\Controller\Downloads
+    
     Write-Output "Please Install Unifi Controller"
-    Start-Process C:\Users\Controller\Downloads\UniFi-installer.exe -Credential $Credentials
+    runas /savecred /user:Controller UniFi-installer.exe
     Pause
 
     # Get Current IP Address
