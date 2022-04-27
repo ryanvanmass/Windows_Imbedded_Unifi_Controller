@@ -16,6 +16,7 @@ if ($UserSelection -eq 1) {
     New-localUser -Name Controller -Password $Password -PasswordNeverExpires
     Add-LocalGroupMember Users Controller
 
+    Write-Output "Please Enter the Controller Account Password and press Enter"
     runas /savecred /user:Controller whoami
 
 
