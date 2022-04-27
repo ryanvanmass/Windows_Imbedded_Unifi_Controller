@@ -34,7 +34,7 @@ if ($UserSelection -eq 1) {
 
     Set-Location C:\Users\Controller\Downloads
     
-    Write-Output "Please Install Unifi Controller"
+    Write-Output "Please Install Unifi Controller (It may take a few moments for the installer to launch)"
     runas /savecred /user:Controller UniFi-installer.exe
     Pause
 
