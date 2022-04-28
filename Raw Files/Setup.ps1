@@ -101,6 +101,21 @@ if ($UserSelection -eq 1) {
     
 
 }
+elseif ($UserSelection -eq 2) {
+    Set-Location 'C:\Users\Controller\Ubiquiti UniFi'
+    # Kill Unifi if it is running
+    Stop-Process -Name Java*
+    
+    # Add Unifi Service
+    Write-Output "Installing Controller as a Service"
+    runas /user:Controller "java -jar 'C:\Users\Controller\Ubiquiti UniFi\lib\ace.jar' installsvc"
+
+    # Start Service
+    Start-Service Unifi
+
+    Pause
+    Exit
+}
 elseif ($UserSelection -eq 3) {
     Get-Content -Tail 30 "C:\Users\Controller\Ubiquiti UniFi\logs\server.log" -Wait
 }
