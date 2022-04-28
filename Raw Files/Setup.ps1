@@ -101,6 +101,8 @@ if ($UserSelection -eq 1) {
     
 
 }
+
+### Enable Running Controller as a Service ###
 elseif ($UserSelection -eq 2) {
     Set-Location 'C:\Users\Controller\Ubiquiti UniFi'
     # Kill Unifi if it is running
@@ -116,6 +118,8 @@ elseif ($UserSelection -eq 2) {
     Pause
     Exit
 }
+
+### Live Log Monitor ###
 elseif ($UserSelection -eq 3) {
     Get-Content -Tail 30 "C:\Users\Controller\Ubiquiti UniFi\logs\server.log" -Wait
 }
