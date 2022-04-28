@@ -14,3 +14,15 @@ __Pre-compiled Executable__
 2. Select Desired Configuration Option
 3. Follow onscreen prompts
 
+# Compiling your own executable
+1. Run the bellow commands in an administrative powershell window
+```
+Install-Module ps2exe
+Import-Module ps2exe
+```
+2. Run `win-ps2exe` in an administrative powershell window
+3. Enter the bellow information and select compile
+   * Source: Directory to `Setup.ps1`
+   * Destination: Select where you would like the executable saved
+   * Deselect compile as a graphical app
+   * Select Run with administrative privleges
