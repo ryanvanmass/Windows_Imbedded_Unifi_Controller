@@ -104,19 +104,38 @@ if ($UserSelection -eq 1) {
 
 ### Enable Running Controller as a Service ###
 elseif ($UserSelection -eq 2) {
-    Set-Location 'C:\Users\Controller\Ubiquiti UniFi'
-    # Kill Unifi if it is running
-    Stop-Process -Name Java*
+    $ServiceAccount = Read-Host -Prompt "Are you Using a Service account (Y/N):"
+
+    if ($ServiceAccount -eq "Y") {
+        Set-Location 'C:\Users\Controller\Ubiquiti UniFi'
+        # Kill Unifi if it is running
+        Stop-Process -Name Java*
     
-    # Add Unifi Service
-    Write-Output "Installing Controller as a Service"
-    runas /user:Controller "java -jar 'C:\Users\Controller\Ubiquiti UniFi\lib\ace.jar' installsvc"
+        # Add Unifi Service
+        Write-Output "Installing Controller as a Service"
+        runas /user:Controller "java -jar 'C:\Users\Controller\Ubiquiti UniFi\lib\ace.jar' installsvc"
 
-    # Start Service
-    Start-Service Unifi
+        # Start Service
+        Start-Service Unifi
 
-    Pause
-    Exit
+        Pause
+        Exit
+    }
+    elseif ($ServiceAccount -eq "N") {
+        $User = whoami
+
+        Set-Location 'C:\Users\Controller\Ubiquiti UniFi'
+        # Kill Unifi if it is running
+        Stop-Process -Name Java*
+
+        java -jar 'C:\Users\$User\Ubiquiti UniFi\lib\ace.jar' installsvc
+
+        # Start Service
+        Start-Service Unifi
+
+        Pause
+        Exit        
+    }
 }
 
 ### Live Log Monitor ###
