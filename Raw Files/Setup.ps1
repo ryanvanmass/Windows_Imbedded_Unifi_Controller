@@ -121,13 +121,11 @@ elseif ($env:usernameSelection -eq 2) {
         Exit
     }
     elseif ($ServiceAccount -eq "N") {
-        $env:username = whoami
-
-        Set-Location 'C:\Users\Controller\Ubiquiti UniFi'
         # Kill Unifi if it is running
         Stop-Process -Name Java*
 
-        java -jar 'C:\Users\$env:username\Ubiquiti UniFi\lib\ace.jar' installsvc
+        Set-Location "C:\Users\$env:username\Ubiquiti UniFi\lib"
+        java -jar ace.jar installsvc
 
         # Start Service
         Start-Service Unifi
