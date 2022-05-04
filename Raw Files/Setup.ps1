@@ -112,7 +112,7 @@ elseif ($env:usernameSelection -eq 2) {
     
         # Add Unifi Service
         Write-Output "Installing Controller as a Service"
-        runas /user:Controller "java -jar 'C:\Users\Controller\Ubiquiti UniFi\lib\ace.jar' installsvc"
+        java -jar 'C:\Users\Controller\Ubiquiti UniFi\lib\ace.jar' installsvc
 
         # Start Service
         Start-Service Unifi
