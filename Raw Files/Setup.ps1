@@ -61,21 +61,22 @@ if ($env:usernameSelection -eq 1) {
     elseif ($ServiceAccount -eq "N") {
         # Install Java
         Write-Output "Downloading Java"
-        Invoke-WebRequest https://javadl.oracle.com/webapps/download/AutoDL?BundleId=245807_df5ad55fdd604472a86a45a217032c7d -OutFile C:\Users\$env:username\Downloads\Java.exe 
+        Invoke-WebRequest https://javadl.oracle.com/webapps/download/AutoDL?BundleId=245807_df5ad55fdd604472a86a45a217032c7d -OutFile Java.exe 
         
         Write-Output "Installing Java"
-        C:\Users\$env:username\Downloads\Java.exe /s
+        .\Java.exe /s
         Start-Sleep 120
+        Move-Item Java.exe C:\Users\$env:username\Downloads\Java.exe
 
         # Install Unifi Controller
         Write-Output "Downloading Unifi Controller"
-        Invoke-WebRequest https://dl.ui.com/unifi/7.0.25/UniFi-installer.exe -OutFile C:\Users\$env:username\Downloads\UniFi-installer.exe
-        
-        Set-Location C:\Users\Controller\Downloads
+        Invoke-WebRequest https://dl.ui.com/unifi/7.0.25/UniFi-installer.exe -OutFile UniFi-installer.exe
                 
         Write-Output "Please Install Unifi Controller (It may take a few moments for the installer to launch)"
-        C:\Users\$env:username\Downloads\UniFi-installer.exe
+        .\UniFi-installer.exe
         Pause
+
+        Move-Item UniFi-installer.exe C:\Users\$env:username\Downloads\UniFi-installer.exe
         
         # Get Current IP Address
         $IP = (Get-WmiObject -class win32_NetworkAdapterConfiguration -Filter 'ipenabled = "true"').ipaddress[0]
