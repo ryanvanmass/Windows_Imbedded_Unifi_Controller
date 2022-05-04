@@ -5,10 +5,10 @@ Write-Output "2. Enable Running the Controller as a service"
 Write-Output "3. Live Log monitor"
 # Write-Output "4. Prep for Upgrade"
 
-$UserSelection = Read-Host -Prompt "Selection: "
+$env:usernameSelection = Read-Host -Prompt "Selection: "
 
 ### Install Controller ###
-if ($UserSelection -eq 1) {
+if ($env:usernameSelection -eq 1) {
     # Prompts user if they want to create a Service account
     Write-Output "Would you like to create a Service Account to run the Controller on? (Y/N)"
     Write-Output "Note: Service account only currently works on Windows Server Core"
@@ -59,24 +59,22 @@ if ($UserSelection -eq 1) {
         Exit
     }
     elseif ($ServiceAccount -eq "N") {
-        $User = whoami
-        
         # Install Java
         Write-Output "Downloading Java"
-        Invoke-WebRequest https://javadl.oracle.com/webapps/download/AutoDL?BundleId=245807_df5ad55fdd604472a86a45a217032c7d -OutFile C:\Users\$User\Downloads\Java.exe 
+        Invoke-WebRequest https://javadl.oracle.com/webapps/download/AutoDL?BundleId=245807_df5ad55fdd604472a86a45a217032c7d -OutFile C:\Users\$env:username\Downloads\Java.exe 
         
         Write-Output "Installing Java"
-        C:\Users\$User\Downloads\Java.exe /s
+        C:\Users\$env:username\Downloads\Java.exe /s
         Start-Sleep 120
 
         # Install Unifi Controller
         Write-Output "Downloading Unifi Controller"
-        Invoke-WebRequest https://dl.ui.com/unifi/7.0.25/UniFi-installer.exe -OutFile C:\Users\$User\Downloads\UniFi-installer.exe
+        Invoke-WebRequest https://dl.ui.com/unifi/7.0.25/UniFi-installer.exe -OutFile C:\Users\$env:username\Downloads\UniFi-installer.exe
         
         Set-Location C:\Users\Controller\Downloads
                 
         Write-Output "Please Install Unifi Controller (It may take a few moments for the installer to launch)"
-        C:\Users\$User\Downloads\UniFi-installer.exe
+        C:\Users\$env:username\Downloads\UniFi-installer.exe
         Pause
         
         # Get Current IP Address
@@ -103,7 +101,7 @@ if ($UserSelection -eq 1) {
 }
 
 ### Enable Running Controller as a Service ###
-elseif ($UserSelection -eq 2) {
+elseif ($env:usernameSelection -eq 2) {
     $ServiceAccount = Read-Host -Prompt "Are you Using a Service account (Y/N):"
 
     if ($ServiceAccount -eq "Y") {
@@ -122,13 +120,13 @@ elseif ($UserSelection -eq 2) {
         Exit
     }
     elseif ($ServiceAccount -eq "N") {
-        $User = whoami
+        $env:username = whoami
 
         Set-Location 'C:\Users\Controller\Ubiquiti UniFi'
         # Kill Unifi if it is running
         Stop-Process -Name Java*
 
-        java -jar 'C:\Users\$User\Ubiquiti UniFi\lib\ace.jar' installsvc
+        java -jar 'C:\Users\$env:username\Ubiquiti UniFi\lib\ace.jar' installsvc
 
         # Start Service
         Start-Service Unifi
@@ -139,7 +137,7 @@ elseif ($UserSelection -eq 2) {
 }
 
 ### Live Log Monitor ###
-elseif ($UserSelection -eq 3) {
+elseif ($env:usernameSelection -eq 3) {
     Get-Content -Tail 30 "C:\Users\Controller\Ubiquiti UniFi\logs\server.log" -Wait
 }
 
